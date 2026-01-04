@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreativeVault | Artist Portfolio Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/public/favicon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo" onclick="showPage('landing')">
+                    <i class="fas fa-palette"></i>
+                    CreativeVault
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('landing')">Home</a></li>
+                    <li><a href="#" onclick="showPage('landing')">Explore</a></li>
+                    <li><a href="#" onclick="showPage('landing')">Artists</a></li>
+                    <li><a href="#" onclick="showPage('landing')">About</a></li>
+                </ul>
+                
+                <div class="auth-buttons" id="authButtons">
+                    <!-- Auth buttons will be dynamically inserted here -->
+                </div>
+                
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Landing Page -->
+        <section style="margin-top: 100px; border-radius: 12px; box-shadow: 20px; scrollbar-shadow-color: beige;" id="landing" class="page active">
+            <div class="hero">
+                <h1>Showcase Your Creative Vision</h1>
+                <p>A platform for artists to upload, display, and share digital artwork with the world. Join our community of creative minds.</p>
+                <a href="#" class="btn btn-primary" onclick="showPage('signup')">
+                    <i class="fas fa-user-plus"></i> Join Now
+                </a>
+            </div>
+
+            <h2 class="section-title">Featured Artwork</h2>
+            <div class="masonry-grid" id="featuredGrid">
+                <!-- Featured images will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- Sign Up Page -->
+        <section style="margin-top: 100px;" id="signup" class="page">
+            <div class="auth-container">
+                <div class="auth-form">
+                    <h2>Create an Account</h2>
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label for="signupUsername">Username</label>
+                            <input type="text" id="signupUsername" class="form-control" placeholder="Choose a username" required>
+                            <div class="error-message" id="usernameError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email</label>
+                            <input type="email" id="signupEmail" class="form-control" placeholder="Enter your email" required>
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" id="signupPassword" class="form-control" placeholder="Create a password" required>
+                            <div class="error-message" id="passwordError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                            <div class="error-message" id="confirmPasswordError"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    </form>
+                    <div class="form-footer">
+                        Already have an account? <a href="#" onclick="showPage('login')">Log In</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Page -->
+        <section style="margin-top: 100px;" id="login" class="page">
+            <div class="auth-container">
+                <div class="auth-form">
+                    <h2>Welcome Back</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginUsername">Username or Email</label>
+                            <input type="text" id="loginUsername" class="form-control" placeholder="Enter your username or email" required>
+                            <div class="error-message" id="loginError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                    </form>
+                    <div class="form-footer">
+                        Don't have an account? <a href="#" onclick="showPage('signup')">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Profile Page -->
+        <section style="margin-top: 100px;" id="profile" class="page">
+            <div class="profile-header" id="profileHeader">
+                <!-- Profile header will be dynamically loaded here -->
+            </div>
+
+            <div class="upload-container">
+                <h2 class="section-title">Upload New Artwork</h2>
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop your image here</p>
+                    <span>or click to browse (JPEG, PNG, GIF up to 5MB)</span>
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                </div>
+                
+                <div id="imagePreview">
+                    <img id="previewImage" src="#" alt="Preview">
+                </div>
+                
+                <form id="uploadForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="imageTitle">Title</label>
+                        <input type="text" id="imageTitle" class="form-control" placeholder="Give your artwork a title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageDescription">Description</label>
+                        <textarea id="imageDescription" class="form-control" rows="3" placeholder="Describe your artwork (optional)"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload Artwork</button>
+                    <button type="button" class="btn btn-outline" onclick="cancelUpload()">Cancel</button>
+                </form>
+            </div>
+
+            <div class="user-images">
+                <h2 class="section-title">Your Artwork Collection</h2>
+                <div class="masonry-grid" id="userImagesGrid">
+                    <!-- User's images will be dynamically loaded here -->
+                </div>
+                <div class="empty-state" id="emptyUserImages">
+                    <i class="fas fa-images"></i>
+                    <h3>No Artwork Yet</h3>
+                    <p>Upload your first artwork to start building your portfolio!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Public Profile Page -->
+        <section style="margin-top: 90px;" id="publicProfile" class="page">
+            <div class="public-profile-header" id="publicProfileHeader">
+                <!-- Public profile header will be dynamically loaded here -->
+            </div>
+
+            <h2 class="section-title">Artwork Collection</h2>
+            <div class="masonry-grid" id="publicImagesGrid">
+                <!-- Public user images will be dynamically loaded here -->
+            </div>
+            <div class="empty-state" id="emptyPublicImages">
+                <i class="fas fa-images"></i>
+                <h3>No Artwork to Display</h3>
+                <p>This user hasn't uploaded any artwork yet.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <a href="#" class="footer-logo" onclick="showPage('landing')">
+                        <i class="fas fa-palette"></i>
+                        CreativeVault
+                    </a>
+                    <p style="margin-top: 15px; max-width: 300px; color: #adb5bd;">A platform for artists to showcase their creative work and connect with art enthusiasts worldwide.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#" onclick="showPage('landing')">Home</a></li>
+                        <li><a href="#" onclick="showPage('landing')">Explore</a></li>
+                        <li><a href="#" onclick="showPage('landing')">Top Artists</a></li>
+                        <li><a href="#" onclick="showPage('landing')">Trending Art</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#" onclick="showPage('landing')">About Us</a></li>
+                        <li><a href="#" onclick="showPage('landing')">Contact</a></li>
+                        <li><a href="#" onclick="showPage('landing')">Privacy Policy</a></li>
+                        <li><a href="#" onclick="showPage('landing')">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a target="_blank" href="https://github.com/arjun5354/"><i class="fab fa-github" style="margin-right: 8px;"></i> Github</a></li>
+                        <li><a target="_blank" href="https://www.linkedin.com/in/arjun-nayak-756801251/"><i class="fab fa-linkedin-in" style="margin-right: 8px;"></i> Linkedin</a></li>
+                        <li><a target="_blank" href="https://x.com/aarjun_nay78251"><i class="fab fa-twitter" style="margin-right: 8px;"></i> Twitter</a></li>
+                        <li><a target="_blank" href="https://x.com/aarjun_nay78251"><i class="fab fa-instagram" style="margin-right: 8px;"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2026 CreativeVault. All rights reserved. | Made with <i class="fas fa-heart" style="color: #ff6584;"></i> for artists.
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
